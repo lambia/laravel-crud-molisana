@@ -13,7 +13,8 @@ class PastaController extends Controller
     public function index()
     {
         $products = Pasta::all();
-        return $products;
+
+        return view("pastas.index", compact("products"));
     }
 
     /**
@@ -37,7 +38,9 @@ class PastaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $detail = Pasta::find($id);
+
+        return view("pastas.show", compact("detail"));
     }
 
     /**
