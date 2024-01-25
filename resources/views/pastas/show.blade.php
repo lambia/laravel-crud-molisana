@@ -3,10 +3,10 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h2>{{ $detail->title }}</h2>
+            <h2>{{ $pasta->title }}</h2>
         </div>
         <div class="row">
-            <p>{{ $detail->description }}</p>
+            <p>{{ $pasta->description }}</p>
         </div>
     </div>
 @endsection

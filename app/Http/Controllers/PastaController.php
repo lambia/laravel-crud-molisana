@@ -22,7 +22,7 @@ class PastaController extends Controller
      */
     public function create()
     {
-        //
+        return view("pastas.create");
     }
 
     /**
@@ -30,17 +30,30 @@ class PastaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $pasta = new Pasta();
+        $pasta->title = $data["title"];
+        $pasta->description = $data["description"];
+        $pasta->type = $data["type"];
+        $pasta->image = $data["image"];
+        $pasta->cooking_time = $data["cooking_time"];
+        $pasta->weight = $data["weight"];
+        $pasta->save();
+
+        // return view("pastas.show", compact("pasta"));
+        return redirect()->route('pastas.show', $pasta->id);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    // public function show(string $id) //senza dependecy injection
+    public function show(Pasta $pasta) //CON dependecy injection
     {
-        $detail = Pasta::find($id);
+        // $pasta = Pasta::find($id); //senza dependecy injection
 
-        return view("pastas.show", compact("detail"));
+        return view("pastas.show", compact("pasta"));
     }
 
     /**
