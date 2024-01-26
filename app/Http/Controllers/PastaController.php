@@ -51,7 +51,18 @@ class PastaController extends Controller
     // public function show(string $id) //senza dependecy injection
     public function show(Pasta $pasta) //CON dependecy injection
     {
-        // $pasta = Pasta::find($id); //senza dependecy injection
+        //senza dependecy injection
+        // $pasta = Pasta::find($id);
+
+        // if (!$pasta) {
+        //     abort(404);
+        // }
+
+        // return view("pastas.show", compact("pasta"));
+
+        //senza dependency injection, ma con FindOrFail
+        // $pasta = Pasta::findOrFail($id);
+        // return view("pastas.show", compact("pasta"));
 
         return view("pastas.show", compact("pasta"));
     }

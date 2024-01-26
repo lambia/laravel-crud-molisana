@@ -9,7 +9,12 @@
             @foreach ($products as $item)
                 <div class="col-4 pb-4">
                     <div class="card" style="height: 100%;">
-                        {{-- <img src="{{ $item->image }}" class="card-img-top" alt="{{ $item->title }}"> --}}
+                        @if ($item->image)
+                            <img src="{{ $item->image }}" class="card-img-top" alt="{{ $item->title }}">
+                        @else
+                            <img src="https://upload.wikimedia.org/wikipedia/it/4/41/Logo_PASTA_LA_MOLISANA.png"
+                                class="card-img-top" alt="{{ $item->title }}">
+                        @endif
                         <div class="card-body">
                             <h5 class="card-title">{{ $item->title }}</h5>
                             {{-- <p class="card-text">{{ $item->description }}</p> --}}
