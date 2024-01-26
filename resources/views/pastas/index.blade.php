@@ -22,7 +22,8 @@
                                 Tempo di cottura: {{ $item->cooking_time }}<br>
                                 Pasta {{ $item->type }}
                             </p>
-                            <a href="{{ route('pastas.show', $item->id) }}" class="btn btn-primary">Mostra dettagli</a>
+                            <a href="{{ route('pastas.show', $item->id) }}" class="btn btn-primary">Dettagli</a>
+                            <a href="{{ route('pastas.edit', $item->id) }}" class="btn btn-warning">Modifica</a>
                         </div>
                     </div>
                 </div>

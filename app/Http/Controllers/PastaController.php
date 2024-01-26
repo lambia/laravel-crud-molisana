@@ -70,17 +70,20 @@ class PastaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Pasta $pasta)
     {
-        //
+        return view("pastas.edit", compact("pasta"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Pasta $pasta)
     {
-        //
+        $data = $request->all();
+        $pasta->update($data);
+
+        return redirect()->route('pastas.show', $pasta->id);
     }
 
     /**
