@@ -4,9 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Models\Pasta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class PastaController extends Controller
 {
+
+    public function validation($data)
+    {
+        $validated = Validator::make($data, [
+            "title" => "required|min:5|max:50",
+            // "description" => "",
+            "type" => "required|max:20",
+            "image" => "required",
+            "cooking_time" => "required|max:20",
+            "weight" => "required|max:20",
+        ], [
+            'title.required' => 'Il titolo è necessario',
+            'title.max' => 'Sei prolisso',
+            'title.min' => 'Troppo corto',
+        ])->validate();
+
+        return $validated;
+    }
+
+
     /**
      * Display a listing of the resource.
      */
@@ -31,15 +53,10 @@ class PastaController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        $dati_validati = $this->validation($data);
 
         $pasta = new Pasta();
-        // $pasta->title = $data["title"];
-        // $pasta->description = $data["description"];
-        // $pasta->type = $data["type"];
-        // $pasta->image = $data["image"];
-        // $pasta->cooking_time = $data["cooking_time"];
-        // $pasta->weight = $data["weight"];
-        $pasta->fill($data);
+        $pasta->fill($dati_validati);
         $pasta->save();
 
         // return view("pastas.show", compact("pasta"));
@@ -82,10 +99,9 @@ class PastaController extends Controller
     public function update(Request $request, Pasta $pasta)
     {
         $data = $request->all();
-        // $pasta->fill($data);
-        // $pasta->update();
+        $dati_validati = $this->validation($data);
 
-        $pasta->update($data);
+        $pasta->update($dati_validati);
 
         return redirect()->route('pastas.show', $pasta->id);
     }

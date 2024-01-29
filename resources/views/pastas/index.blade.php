@@ -24,8 +24,6 @@
                             </p>
                             <a href="{{ route('pastas.show', $item->id) }}" class="btn btn-primary">Dettagli</a>
                             <a href="{{ route('pastas.edit', $item->id) }}" class="btn btn-warning">Modifica</a>
-
-
                             <form action="{{ route('pastas.destroy', $item->id) }}" method="POST" class="d-inline-block">
                                 @csrf
                                 @method('DELETE')
