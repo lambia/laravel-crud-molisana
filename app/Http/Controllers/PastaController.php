@@ -33,12 +33,13 @@ class PastaController extends Controller
         $data = $request->all();
 
         $pasta = new Pasta();
-        $pasta->title = $data["title"];
-        $pasta->description = $data["description"];
-        $pasta->type = $data["type"];
-        $pasta->image = $data["image"];
-        $pasta->cooking_time = $data["cooking_time"];
-        $pasta->weight = $data["weight"];
+        // $pasta->title = $data["title"];
+        // $pasta->description = $data["description"];
+        // $pasta->type = $data["type"];
+        // $pasta->image = $data["image"];
+        // $pasta->cooking_time = $data["cooking_time"];
+        // $pasta->weight = $data["weight"];
+        $pasta->fill($data);
         $pasta->save();
 
         // return view("pastas.show", compact("pasta"));
@@ -81,6 +82,9 @@ class PastaController extends Controller
     public function update(Request $request, Pasta $pasta)
     {
         $data = $request->all();
+        // $pasta->fill($data);
+        // $pasta->update();
+
         $pasta->update($data);
 
         return redirect()->route('pastas.show', $pasta->id);
