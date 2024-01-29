@@ -14,7 +14,7 @@ class PastaController extends Controller
     {
         $validated = Validator::make($data, [
             "title" => "required|min:5|max:50",
-            // "description" => "",
+            "description" => "",
             "type" => "required|max:20",
             "image" => "required",
             "cooking_time" => "required|max:20",
